@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS genero (
 CREATE TABLE IF NOT EXISTS musica (
  codigo_musica INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
  cantor VARCHAR(50),
- duracao TIME,
+ duracao TIME(4),
  titulo VARCHAR(100),
  imagem VARCHAR(300),
  categoria VARCHAR(30),

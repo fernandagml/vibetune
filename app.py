@@ -1,3 +1,4 @@
+
 from flask import Flask as Fk, render_template as rt
 import mysql.connector as sql
 
@@ -24,10 +25,13 @@ def index():
     #Recuperando os dados
     musicas = cursor.fetchall()
 
+    cursor.execute("SELECT categoria, icone, cor FROM genero;")
+    generos = cursor.fetchall()
+
     #Fechando a conexão
     conec.close()
 
-    return rt("principal.html", musicas = musicas)
+    return rt("principal.html", musicas = musicas, generos = generos)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5050, debug=True)
