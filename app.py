@@ -14,7 +14,8 @@ def index():
 @app.route("/admin")
 def p_admin():
     musicas = rm()
-    return rt("administracao.html", musicas = musicas)
+    generos = rg()
+    return rt("administracao.html", musicas = musicas, generos = generos)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5050, debug=True)
