@@ -9,7 +9,7 @@ def recuperar_musicas():
     return musicas
 
 def salvar_musica(cantor:str, duracao:str, titulo:str, imagem:str, categoria:str) -> bool:
-    """Função criada para adicionar uma música no banco de dados."""]
+    """Função criada para adicionar uma música no banco de dados."""
 
     try:
         conexao, cursor = conectar()
@@ -18,5 +18,6 @@ def salvar_musica(cantor:str, duracao:str, titulo:str, imagem:str, categoria:str
         conexao.close()
         return True
     
-    except:
+    except Exception as erro:
+        print(erro)
         return False
