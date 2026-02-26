@@ -1,4 +1,4 @@
-from model.musica import recuperar_musicas as rm, salvar_musica as sm, deletar as dm
+from model.musica import recuperar_musicas as rm, salvar_musica as sm, deletar as dm, status as sm
 from model.genero import recuperar_gerenos as rg
 from flask import Flask as Fk, render_template as rt, request, redirect
 
@@ -33,6 +33,12 @@ def api_inserir_musica():
 @app.route("/music/delete/<codigo>")
 def deletar_musica(codigo):
     dm(codigo)
+    return redirect("/admin")
+
+@app.route("/music/status/<codigo>/<status>")
+def ativar_musica(codigo, status):
+    sm(codigo, status)
+    print(codigo, status)
     return redirect("/admin")
 
 if __name__ == '__main__':
