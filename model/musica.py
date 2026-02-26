@@ -22,11 +22,11 @@ def salvar_musica(cantor:str, duracao:str, titulo:str, imagem:str, categoria:str
         print(erro)
         return False
     
-def delete_musica(codigo):
+def delete_musica(codigo:int) -> bool:
 
     try:
         conexao, cursor = conectar()
-        cursor.execute("DELETE FROM musica WHERE codigo_musica = %s;", (codigo))
+        cursor.execute("DELETE FROM musica WHERE codigo_musica = %s;", (codigo,))
         conexao.commit()
         conexao.close()
         return True

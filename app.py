@@ -1,4 +1,4 @@
-from model.musica import recuperar_musicas as rm, salvar_musica as sm
+from model.musica import recuperar_musicas as rm, salvar_musica as sm, delete_musica as dm
 from model.genero import recuperar_gerenos as rg
 from flask import Flask as Fk, render_template as rt, request, redirect
 
@@ -29,6 +29,11 @@ def api_inserir_musica():
         return redirect("/admin")
     else:
         return "ERRO! Não foi possível adicionar a música"
+
+@app.route("/music/delete/<codigo>")
+def deletar_musica(codigo):
+    dm(codigo)
+    return redirect("/admin")
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5050, debug=True)

@@ -1,3 +1,3 @@
-from model.musica import delete_musica as dm
+from model.musica import delete_musica
 
-dm(14)
+delete_musica(14)
