@@ -21,3 +21,16 @@ def salvar_musica(cantor:str, duracao:str, titulo:str, imagem:str, categoria:str
     except Exception as erro:
         print(erro)
         return False
+    
+def delete_musica(codigo):
+
+    try:
+        conexao, cursor = conectar()
+        cursor.execute("DELETE FROM musica WHERE codigo_musica = %s;", (codigo))
+        conexao.commit()
+        conexao.close()
+        return True
+    
+    except Exception as erro:
+        print(erro)
+        return False
