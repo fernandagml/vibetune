@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS musica (
  titulo VARCHAR(100),
  imagem VARCHAR(300),
  categoria VARCHAR(30),
+ status_musica BOOL DEFAULT 1,
  CONSTRAINT FK_musica_genero
  FOREIGN KEY (categoria)
  REFERENCES genero (categoria)

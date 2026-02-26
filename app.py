@@ -1,4 +1,4 @@
-from model.musica import recuperar_musicas as rm, salvar_musica as sm, delete_musica as dm
+from model.musica import recuperar_musicas as rm, salvar_musica as sm, deletar as dm
 from model.genero import recuperar_gerenos as rg
 from flask import Flask as Fk, render_template as rt, request, redirect
 
