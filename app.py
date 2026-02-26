@@ -17,13 +17,15 @@ def p_admin():
     generos = rg()
     return rt("administracao.html", musicas = musicas, generos = generos)
 
-@app.route("/musica/post", methods=["POST"])
+@app.route("/music/post", methods=["POST"])
 def api_inserir_musica():
-    musica = request.form.get("titulo")
     cantor = request.form.get("cantor")
     duracao = request.form.get("duracao")
-    imagem = request.form.get("cantor")
-    if sm(musica, cantor, duracao, imagem):
+    titulo = request.form.get("titulo")
+    imagem = request.form.get("imagem")
+    categoria = request.form.get("categoria")
+    print(categoria)
+    if sm(cantor, duracao, titulo, imagem, categoria):
         return redirect("/admin")
     else:
         return "ERRO! Não foi possível adicionar a música"

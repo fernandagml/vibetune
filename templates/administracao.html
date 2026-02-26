@@ -91,10 +91,10 @@
                             <label class="label is-small">Categoria</label>
                             <div class="control is-expanded">
                                 <div class="select is-fullwidth">
-                                    <select>
+                                    <select name="categoria">
                                         <option>Selecione...</option>
                                         {% for genero in generos %}
-                                        <option value="{{ genero.categoria }}">{{ genero.categoria }}</option>
+                                        <option value="{{ genero.categoria }}" name="categoria">{{ genero.categoria }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
