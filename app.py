@@ -6,7 +6,6 @@ app = Fk(__name__)
 
 @app.route('/', methods=["GET"])
 def index():
-
     musicas = rm(True, None)
     generos = rg()
     return rt("principal.html", musicas = musicas, generos = generos)
@@ -45,6 +44,10 @@ def filtrar_genero(genero):
     musicas = rm(1, genero)
     generos = rg()
     return rt("principal.html", musicas = musicas, generos = generos)
+
+@app.route("cadastro")
+def cadastrar():
+    return rt("cadastro.html")
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5050, debug=True)
