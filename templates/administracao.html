@@ -146,11 +146,11 @@
                         <td class="has-text-right px-5">
                             <div class="buttons is-right">
                                 {% if musica.status_musica: %}
-                                <a href="/music/status/{{ musica.codigo_musica }}/{{ musica.status_musica }}" class="button is-small is-warning is-light" title="Desativar">
+                                <a href="/music/status/{{ musica.codigo_musica }}/0" class="button is-small is-warning is-light" title="Desativar">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
                                 {% else %}
-                                <a href="/music/status/{{ musica.codigo_musica }}/{{ musica.status_musica }}" class="button is-small is-warning is-light" title="Ativar">
+                                <a href="/music/status/{{ musica.codigo_musica }}/1" class="button is-small is-warning is-light" title="Ativar">
                                     <i class="fa-solid fa-eye-slash"></i>
                                 </a>
                                 {% endif %}

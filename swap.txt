@@ -1,0 +1,12 @@
+    if genero == None:
+        conexao, cursor = conectar()
+        cursor.execute("SELECT codigo_musica, cantor, duracao, titulo, imagem, categoria, status_musica FROM musica;") #Executando a consulta
+        musicas = cursor.fetchall() #Recuperando os dados
+        conexao.close()
+        return musicas
+    else:
+        conexao, cursor = conectar()
+        cursor.execute("SELECT codigo_musica, cantor, duracao, titulo, imagem, categoria, status_musica FROM musica WHERE categoria = %s;", (genero,)) #Executando a consulta
+        musicas = cursor.fetchall() #Recuperando os dados
+        conexao.close()
+        return musicas

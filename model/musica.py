@@ -1,9 +1,19 @@
 from database.conexao import conectar
 
-def recuperar_musicas():
+def recuperar_musicas(status:bool=False, genero:str=None):
     """Função criada para buscar as músicas salvas no banco de dados."""
+
     conexao, cursor = conectar()
-    cursor.execute("SELECT codigo_musica, cantor, duracao, titulo, imagem, categoria, status_musica FROM musica;") #Executando a consulta
+
+    if status == False:
+        cursor.execute("SELECT codigo_musica, cantor, duracao, titulo, imagem, categoria, status_musica FROM musica;") #Executando a consulta
+    
+    elif genero:
+        cursor.execute("SELECT codigo_musica, cantor, duracao, titulo, imagem, categoria, status_musica FROM musica WHERE status_musica = %s and categoria = %s;", (status, genero))
+        
+    else:
+        cursor.execute("SELECT codigo_musica, cantor, duracao, titulo, imagem, categoria, status_musica FROM musica WHERE status_musica = %s;", (status,)) #Executando a consulta
+
     musicas = cursor.fetchall() #Recuperando os dados
     conexao.close()
     return musicas
@@ -37,12 +47,6 @@ def deletar(codigo:int) -> bool:
         return False
     
 def status(codigo:int, status:bool):
-
-    status = int(status)
-    if status == 1:
-        status = 0
-    else:
-        status = 1
         
     try:
         conexao, cursor = conectar()

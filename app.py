@@ -7,7 +7,7 @@ app = Fk(__name__)
 @app.route('/', methods=["GET"])
 def index():
 
-    musicas = rm()
+    musicas = rm(True, None)
     generos = rg()
     return rt("principal.html", musicas = musicas, generos = generos)
 
@@ -38,8 +38,13 @@ def deletar_musica(codigo):
 @app.route("/music/status/<codigo>/<status>")
 def ativar_musica(codigo, status):
     sm(codigo, status)
-    print(codigo, status)
     return redirect("/admin")
+
+@app.route("/music/<genero>")
+def filtrar_genero(genero):
+    musicas = rm(1, genero)
+    generos = rg()
+    return rt("principal.html", musicas = musicas, generos = generos)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5050, debug=True)

@@ -135,7 +135,7 @@
                     <ul class="menu-list">
                         <p class="menu-label">Categorias</p>
                         {% for genero in generos %}
-                        <li><a href="#" style="color: {{ genero.cor }};"><span class="icon"><i class="fa-solid fa-compact-disc"></i></span>{{ genero.categoria }}</a></li>
+                        <li><a href="/music/{{ genero.categoria }}" style="color: {{ genero.cor }};"><span class="icon"><i class="fa-solid fa-compact-disc"></i></span>{{ genero.categoria }}</a></li>
                         {% endfor %}
                     </ul>
                 </div>
