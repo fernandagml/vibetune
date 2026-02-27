@@ -37,13 +37,14 @@ def deletar(codigo:int) -> bool:
         return False
     
 def status(codigo:int, status:bool):
+
+    status = int(status)
     if status == 1:
-        status == 0
+        status = 0
     else:
-        status == 1
+        status = 1
         
     try:
-
         conexao, cursor = conectar()
         cursor.execute("UPDATE musica SET status_musica = %s WHERE codigo_musica = %s;", (status, codigo))
         conexao.commit()
