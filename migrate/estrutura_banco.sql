@@ -19,3 +19,8 @@ CREATE TABLE IF NOT EXISTS musica (
  FOREIGN KEY (categoria)
  REFERENCES genero (categoria)
 );
+
+CREATE TABLE IF NOT EXISTS cadastros (
+	usuario VARCHAR(50) PRIMARY KEY,
+    senha VARCHAR(100) NOT NULL
+);
