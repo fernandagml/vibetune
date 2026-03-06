@@ -1,3 +1,4 @@
-from model.musica import delete_musica
+from model.login import verificar_login
 
-delete_musica(14)
+usuario = verificar_login("fernanda", "123")
+print(usuario)

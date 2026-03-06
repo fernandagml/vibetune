@@ -1,7 +1,7 @@
 from model.musica import recuperar_musicas as rm, salvar_musica as sm, deletar as dm, status as sm
 from model.genero import recuperar_gerenos as rg
 from model.cadastro import cadastrar as cd
-from model.login import login as l
+from model.login import verificar_login as vl
 from flask import Flask as Fk, render_template as rt, request, redirect
 
 app = Fk(__name__)
@@ -48,28 +48,28 @@ def filtrar_genero(genero):
     return rt("principal.html", musicas = musicas, generos = generos)
 
 @app.route("/cadastro")
-def cadastro():
+def pagina_cadastro():
     return rt("cadastro.html")
+
+@app.route("/login")
+def login():
+    return rt("login.html")
 
 @app.route("/cadastro", methods=["POST"])
 def inserir_cadastro():
     usuario = request.form.get("usuario")
     senha = request.form.get("senha")
     cd(usuario, senha)
-    return redirect("/cadastro")
+    return redirect("/login")
 
-# @app.route("/login")
-# def login():
-    
-#     usuario_form = request.form.get("usuario")
-#     senha_form = request.form.get("senha")
-#     usuario_login = l()
-#     l(usuario_form, senha_form)
-#     # if usuario_login == usuario_form
-#     if usuario_login == None:
-#         return rt("cadastro.html")
-#     elif usuario_login == usuario_form:
-#         return rt("administracao.html")
+@app.route("/login/post", methods=["POST"])
+def logar():
+    usuario = request.form.get("usuario")
+    senha = request.form.get("senha")
+    if vl(usuario, senha):
+        return redirect("/admin")
+    else:
+        return redirect("/login")
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5050, debug=True)
