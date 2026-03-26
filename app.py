@@ -2,9 +2,11 @@ from model.musica import recuperar_musicas as rm, salvar_musica as sm, deletar a
 from model.genero import recuperar_gerenos as rg
 from model.cadastro import cadastrar as cd
 from model.login import verificar_login as vl
-from flask import Flask as Fk, render_template as rt, request, redirect
+from flask import Flask as Fk, render_template as rt, request, redirect, session
 
 app = Fk(__name__)
+
+app.secret_key = "vibetune_secret_key"
 
 @app.route('/', methods=["GET"])
 def index():
@@ -14,6 +16,9 @@ def index():
 
 @app.route("/admin")
 def p_admin():
+    if "usuario_logado" not in session:
+        return redirect("/login")
+    
     musicas = rm()
     generos = rg()
     return rt("administracao.html", musicas = musicas, generos = generos)
@@ -55,7 +60,7 @@ def pagina_cadastro():
 def login():
     return rt("login.html")
 
-@app.route("/cadastro", methods=["POST"])
+@app.route("/cadastro/post", methods=["POST"])
 def inserir_cadastro():
     usuario = request.form.get("usuario")
     senha = request.form.get("senha")
@@ -66,7 +71,9 @@ def inserir_cadastro():
 def logar():
     usuario = request.form.get("usuario")
     senha = request.form.get("senha")
-    if vl(usuario, senha):
+    usuario = vl(usuario, senha)
+    if usuario:
+        session["usuario_logado"] = usuario
         return redirect("/admin")
     else:
         return redirect("/login")

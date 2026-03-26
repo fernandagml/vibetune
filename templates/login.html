@@ -1,49 +1,121 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" style="background-color: #0a0a0a;">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
-    
+    <title>Painel Admin - MusicTube</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        *{
+        /* Força o fundo escuro em toda a página, independente do conteúdo */
+        html,
+        body {
+            background-color: #0a0a0a !important;
+            color: #fff;
+            min-height: 100vh;
             margin: 0;
-            overflow: hidden;
         }
-        body{
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+
+        body {
+            padding: 40px 10px;
         }
-        .container_login{
-            background-color: lightgray;
-            padding: 15px 10px;
-            display: flex;
-            flex-direction: column;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgb(0 0 0 / 0.25);
+
+        .box {
+            background-color: #1a1a1a;
+            border: 1px solid #2d2d2d;
+            color: #fff;
         }
-        h1{
-            text-align: center;
-            margin-bottom: 5px;
+
+        .input,
+        .select select {
+            background-color: #2d2d2d;
+            border-color: #3d3d3d;
+            color: #fff;
         }
-        button{
-            margin-top: 10px;
-            cursor: pointer;
+
+        .input:focus,
+        .select select:focus {
+            border-color: #485fc7;
+        }
+
+        /* Ajustes da Tabela */
+        .table {
+            background-color: transparent;
+            color: #fff;
+        }
+
+        .table thead th {
+            color: #7a7a7a;
+            border-bottom-color: #2d2d2d;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+        }
+
+        .table td {
+            border-bottom-color: #2d2d2d;
+            vertical-align: middle;
+        }
+
+        tr:hover {
+            background-color: #242424 !important;
+        }
+
+        .title,
+        .label {
+            color: #fff !important;
+        }
+
+        .subtitle {
+            color: #485fc7 !important;
         }
     </style>
 </head>
+
 <body>
-    <form action="/login/post" class="container_login", method="post">
-        <h1>Login</h1>
-        <p>Usuário</p>
-        <input type="text" id="usuario" name="usuario">
-        <p>Senha</p>
-        <input type="password" id="senha" name="senha">
-        <button type="submit">ENTRAR</button>
-        <button type="submit">Não tem uma senha? Cadastre-se</button>
-    </form>
+
+    <div class="container">
+        <header class="level mb-6">
+            <div class="level-left">
+                <div>
+                    <h1 class="title is-3">Gestão de Contas</h1>
+                    <p class="subtitle is-6">Painel Administrativo</p>
+                </div>
+            </div>
+            <div class="level-right">
+                <a href="/" class="button is-dark">
+                    <i class="fa-solid fa-house mr-2"></i> Voltar para o site
+                </a>
+            </div>
+        </header>
+        <div class="box">
+            <h2 class="title is-5 mb-5">
+                <i class="fa-solid fa-circle-plus has-text-success mr-2"></i> Página de Login
+            </h2>
+            <form action="/login/post" method="POST">
+                <div class="columns is-auto">
+                    <div class="column is-6">
+                        <div class="field">
+                            <label class="label is-small">Usuário</label>
+                            <div class="control">
+                                <input class="input" type="text" name="usuario">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-6">
+                        <div class="field">
+                            <label class="label is-small">Senha</label>
+                            <div class="control">
+                                <input class="input" type="password" name="senha">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="button is-link is-fullwidth mt-4">
+                    <strong><i></i>Logar</strong>
+                </button>
+                <a href="/cadastro">Não tem uma conta? Cadastre aqui!</a>
+            </form>
 </body>
+
 </html>
