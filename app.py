@@ -58,6 +58,9 @@ def pagina_cadastro():
 
 @app.route("/login")
 def login():
+    if "usuario_logado" in session:
+        return redirect("/admin")
+    
     return rt("login.html")
 
 @app.route("/cadastro/post", methods=["POST"])
@@ -71,9 +74,9 @@ def inserir_cadastro():
 def logar():
     usuario = request.form.get("usuario")
     senha = request.form.get("senha")
-    usuario = vl(usuario, senha)
-    if usuario:
-        session["usuario_logado"] = usuario
+    user = vl(usuario, senha)
+    if user:
+        session["usuario_logado"] = user
         return redirect("/admin")
     else:
         return redirect("/login")
