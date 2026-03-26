@@ -2,7 +2,7 @@ from model.musica import recuperar_musicas as rm, salvar_musica as sm, deletar a
 from model.genero import recuperar_gerenos as rg
 from model.cadastro import cadastrar as cd
 from model.login import verificar_login as vl
-from flask import Flask as Fk, render_template as rt, request, redirect, session
+from flask import Flask as Fk, render_template as rt, request, redirect, session, flash
 
 app = Fk(__name__)
 
@@ -77,8 +77,11 @@ def logar():
     user = vl(usuario, senha)
     if user:
         session["usuario_logado"] = user
+        flash("Login realizado com sucesso. Seja bem-vindo(a) {usuario}!", "sucesso")
         return redirect("/admin")
     else:
+        flash("Usuário ou senha inválidos!", "erro")
+        flash("Tente novamente ou cadastre-se para acessar a área de administração.", "erro")
         return redirect("/login")
     
 @app.route("/lougout")

@@ -73,7 +73,6 @@
 </head>
 
 <body>
-
     <div class="container">
         <header class="level mb-6">
             <div class="level-left">
@@ -110,6 +109,13 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div>
+                    {% with mensagens = get_flashed_messages() %}
+                        {% for mensagem in mensagens %}
+                            <h1>{{ mensagem }}</h1>
+                        {% endfor %}
+                    {% endwith %}
                 </div>
                 <button type="submit" class="button is-link is-fullwidth mt-4">
                     <strong><i></i>Logar</strong>
