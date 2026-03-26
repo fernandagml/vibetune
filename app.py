@@ -80,6 +80,11 @@ def logar():
         return redirect("/admin")
     else:
         return redirect("/login")
+    
+@app.route("/lougout")
+def lougout():
+    session.clear()
+    return redirect("/")
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5050, debug=True)
